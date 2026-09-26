@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>bringup</name>
+  <version>1.0.0</version>
+  <description>Master orchestration and launch package for Multi-Robot SLAM, Autonomous Exploration, and Map Merging</description>
+  <maintainer email="nishant@example.com">Nishant Dawale</maintainer>
+  <license>Apache-2.0</license>
+
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>simulation</exec_depend>
+  <exec_depend>robot1_slam</exec_depend>
+  <exec_depend>robot2_slam</exec_depend>
+  <exec_depend>exploration</exec_depend>
+  <exec_depend>map_merger</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
