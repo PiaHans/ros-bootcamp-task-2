@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="competition_world_with_obstacles">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Outer Walls (10m x 10m arena) -->
+    <model name="outer_walls">
+      <static>true</static>
+      <link name="link">
+        <collision name="wall_n"><pose>0 5 0.5 0 0 0</pose><geometry><box><size>10 0.2 1</size></box></geometry></collision>
+        <visual name="wall_n_vis"><pose>0 5 0.5 0 0 0</pose><geometry><box><size>10 0.2 1</size></box></geometry></visual>
+        <collision name="wall_s"><pose>0 -5 0.5 0 0 0</pose><geometry><box><size>10 0.2 1</size></box></geometry></collision>
+        <visual name="wall_s_vis"><pose>0 -5 0.5 0 0 0</pose><geometry><box><size>10 0.2 1</size></box></geometry></visual>
+        <collision name="wall_e"><pose>5 0 0.5 0 0 0</pose><geometry><box><size>0.2 10 1</size></box></geometry></collision>
+        <visual name="wall_e_vis"><pose>5 0 0.5 0 0 0</pose><geometry><box><size>0.2 10 1</size></box></geometry></visual>
+        <collision name="wall_w"><pose>-5 0 0.5 0 0 0</pose><geometry><box><size>0.2 10 1</size></box></geometry></collision>
+        <visual name="wall_w_vis"><pose>-5 0 0.5 0 0 0</pose><geometry><box><size>0.2 10 1</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <!-- Central Divider with a central connecting gap -->
+    <model name="center_divider">
+      <static>true</static>
+      <link name="link">
+        <collision name="div_top"><pose>0 3 0.5 0 0 0</pose><geometry><box><size>0.2 4 1</size></box></geometry></collision>
+        <visual name="div_top_vis"><pose>0 3 0.5 0 0 0</pose><geometry><box><size>0.2 4 1</size></box></geometry></visual>
+        <collision name="div_bot"><pose>0 -3 0.5 0 0 0</pose><geometry><box><size>0.2 4 1</size></box></geometry></collision>
+        <visual name="div_bot_vis"><pose>0 -3 0.5 0 0 0</pose><geometry><box><size>0.2 4 1</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <!-- Obstacles for Robot 1 (Left Side: x < 0) -->
+    <model name="left_obstacle_1">
+      <static>true</static>
+      <link name="link">
+        <pose>-2.5 2.5 0.5 0 0 0</pose>
+        <collision name="col"><geometry><cylinder><radius>0.4</radius><length>1</length></cylinder></geometry></collision>
+        <visual name="vis"><geometry><cylinder><radius>0.4</radius><length>1</length></cylinder></geometry></visual>
+      </link>
+    </model>
+
+    <model name="left_obstacle_2">
+      <static>true</static>
+      <link name="link">
+        <pose>-2.5 -2.5 0.5 0 0 0</pose>
+        <collision name="col"><geometry><box><size>1 1 1</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>1 1 1</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <!-- Obstacles for Robot 2 (Right Side: x > 0) -->
+    <model name="right_obstacle_1">
+      <static>true</static>
+      <link name="link">
+        <pose>2.5 2.5 0.5 0 0 0</pose>
+        <collision name="col"><geometry><box><size>1.5 0.5 1</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>1.5 0.5 1</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="right_obstacle_2">
+      <static>true</static>
+      <link name="link">
+        <pose>2.5 -2.5 0.5 0 0 0</pose>
+        <collision name="col"><geometry><cylinder><radius>0.5</radius><length>1</length></cylinder></geometry></collision>
+        <visual name="vis"><geometry><cylinder><radius>0.5</radius><length>1</length></cylinder></geometry></visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
