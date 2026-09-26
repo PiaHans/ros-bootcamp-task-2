@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="competition_world">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Outer Walls -->
+    <model name="outer_walls">
+      <static>true</static>
+      <link name="link">
+        <!-- North Wall -->
+        <collision name="wall_n"><pose>0 5 0.5 0 0 0</pose><geometry><box><size>10 0.2 1</size></box></geometry></collision>
+        <visual name="wall_n_vis"><pose>0 5 0.5 0 0 0</pose><geometry><box><size>10 0.2 1</size></box></geometry></visual>
+        <!-- South Wall -->
+        <collision name="wall_s"><pose>0 -5 0.5 0 0 0</pose><geometry><box><size>10 0.2 1</size></box></geometry></collision>
+        <visual name="wall_s_vis"><pose>0 -5 0.5 0 0 0</pose><geometry><box><size>10 0.2 1</size></box></geometry></visual>
+        <!-- East Wall -->
+        <collision name="wall_e"><pose>5 0 0.5 0 0 0</pose><geometry><box><size>0.2 10 1</size></box></geometry></collision>
+        <visual name="wall_e_vis"><pose>5 0 0.5 0 0 0</pose><geometry><box><size>0.2 10 1</size></box></geometry></visual>
+        <!-- West Wall -->
+        <collision name="wall_w"><pose>-5 0 0.5 0 0 0</pose><geometry><box><size>0.2 10 1</size></box></geometry></collision>
+        <visual name="wall_w_vis"><pose>-5 0 0.5 0 0 0</pose><geometry><box><size>0.2 10 1</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <!-- Central Divider with a gap -->
+    <model name="center_divider">
+      <static>true</static>
+      <link name="link">
+        <!-- Top Half -->
+        <collision name="div_top"><pose>0 3 0.5 0 0 0</pose><geometry><box><size>0.2 4 1</size></box></geometry></collision>
+        <visual name="div_top_vis"><pose>0 3 0.5 0 0 0</pose><geometry><box><size>0.2 4 1</size></box></geometry></visual>
+        <!-- Bottom Half -->
+        <collision name="div_bot"><pose>0 -3 0.5 0 0 0</pose><geometry><box><size>0.2 4 1</size></box></geometry></collision>
+        <visual name="div_bot_vis"><pose>0 -3 0.5 0 0 0</pose><geometry><box><size>0.2 4 1</size></box></geometry></visual>
+      </link>
+    </model>
+  </world>
+</sdf>
