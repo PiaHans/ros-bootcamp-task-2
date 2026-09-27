@@ -1,0 +1,188 @@
+<?xml version="1.0" ?>
+<!--
+  12 m x 12 m fully enclosed arena (x,y in [-6, 6]) split into four quadrants
+  by internal walls with doorways, plus pillars. Everything is defined inline
+  so no Gazebo model-database download is required (works offline).
+-->
+<sdf version="1.6">
+  <world name="enclosed_world">
+
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <scene>
+      <ambient>0.5 0.5 0.5 1</ambient>
+      <background>0.75 0.8 0.85 1</background>
+      <shadows>false</shadows>
+    </scene>
+
+    <light name="sun" type="directional">
+      <cast_shadows>false</cast_shadows>
+      <pose>0 0 12 0 0 0</pose>
+      <diffuse>0.85 0.85 0.85 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.4 0.3 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane><normal>0 0 1</normal><size>60 60</size></plane>
+          </geometry>
+          <surface>
+            <friction><ode><mu>100</mu><mu2>50</mu2></ode></friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane><normal>0 0 1</normal><size>60 60</size></plane>
+          </geometry>
+          <material>
+            <ambient>0.75 0.75 0.75 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="arena">
+      <static>true</static>
+
+      <!-- ================= outer boundary ================= -->
+      <link name="wall_north">
+        <pose>0 6 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>12.3 0.15 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>12.3 0.15 1.0</size></box></geometry>
+          <material><ambient>0.4 0.45 0.5 1</ambient><diffuse>0.5 0.55 0.6 1</diffuse></material></visual>
+      </link>
+
+      <link name="wall_south">
+        <pose>0 -6 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>12.3 0.15 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>12.3 0.15 1.0</size></box></geometry>
+          <material><ambient>0.4 0.45 0.5 1</ambient><diffuse>0.5 0.55 0.6 1</diffuse></material></visual>
+      </link>
+
+      <link name="wall_east">
+        <pose>6 0 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.15 12.3 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 12.3 1.0</size></box></geometry>
+          <material><ambient>0.4 0.45 0.5 1</ambient><diffuse>0.5 0.55 0.6 1</diffuse></material></visual>
+      </link>
+
+      <link name="wall_west">
+        <pose>-6 0 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.15 12.3 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 12.3 1.0</size></box></geometry>
+          <material><ambient>0.4 0.45 0.5 1</ambient><diffuse>0.5 0.55 0.6 1</diffuse></material></visual>
+      </link>
+
+      <!-- ============ internal cross with doorways ============ -->
+      <link name="wall_v_south">
+        <pose>0 -3.9 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.15 4.2 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 4.2 1.0</size></box></geometry>
+          <material><ambient>0.55 0.5 0.45 1</ambient><diffuse>0.65 0.6 0.55 1</diffuse></material></visual>
+      </link>
+
+      <link name="wall_v_north">
+        <pose>0 3.9 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.15 4.2 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 4.2 1.0</size></box></geometry>
+          <material><ambient>0.55 0.5 0.45 1</ambient><diffuse>0.65 0.6 0.55 1</diffuse></material></visual>
+      </link>
+
+      <link name="wall_h_west">
+        <pose>-3.9 0 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>4.2 0.15 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>4.2 0.15 1.0</size></box></geometry>
+          <material><ambient>0.55 0.5 0.45 1</ambient><diffuse>0.65 0.6 0.55 1</diffuse></material></visual>
+      </link>
+
+      <link name="wall_h_east">
+        <pose>3.9 0 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>4.2 0.15 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>4.2 0.15 1.0</size></box></geometry>
+          <material><ambient>0.55 0.5 0.45 1</ambient><diffuse>0.65 0.6 0.55 1</diffuse></material></visual>
+      </link>
+
+      <!-- ================= room dividers ================= -->
+      <link name="room_nw">
+        <pose>-4.4 3.0 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>3.2 0.15 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>3.2 0.15 1.0</size></box></geometry>
+          <material><ambient>0.55 0.5 0.45 1</ambient><diffuse>0.65 0.6 0.55 1</diffuse></material></visual>
+      </link>
+
+      <link name="room_sw">
+        <pose>-3.0 -5.0 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.15 2.0 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 2.0 1.0</size></box></geometry>
+          <material><ambient>0.55 0.5 0.45 1</ambient><diffuse>0.65 0.6 0.55 1</diffuse></material></visual>
+      </link>
+
+      <link name="room_se">
+        <pose>4.2 -3.0 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>3.6 0.15 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>3.6 0.15 1.0</size></box></geometry>
+          <material><ambient>0.55 0.5 0.45 1</ambient><diffuse>0.65 0.6 0.55 1</diffuse></material></visual>
+      </link>
+
+      <link name="room_ne">
+        <pose>3.0 4.2 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.15 3.6 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.15 3.6 1.0</size></box></geometry>
+          <material><ambient>0.55 0.5 0.45 1</ambient><diffuse>0.65 0.6 0.55 1</diffuse></material></visual>
+      </link>
+
+      <!-- ================= pillars ================= -->
+      <link name="pillar_1">
+        <pose>-2.0 -2.0 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.4 0.4 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 1.0</size></box></geometry>
+          <material><ambient>0.3 0.35 0.4 1</ambient><diffuse>0.4 0.45 0.5 1</diffuse></material></visual>
+      </link>
+
+      <link name="pillar_2">
+        <pose>2.0 2.0 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.4 0.4 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 1.0</size></box></geometry>
+          <material><ambient>0.3 0.35 0.4 1</ambient><diffuse>0.4 0.45 0.5 1</diffuse></material></visual>
+      </link>
+
+      <link name="pillar_3">
+        <pose>-2.5 4.5 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.4 0.4 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 1.0</size></box></geometry>
+          <material><ambient>0.3 0.35 0.4 1</ambient><diffuse>0.4 0.45 0.5 1</diffuse></material></visual>
+      </link>
+
+      <link name="pillar_4">
+        <pose>4.8 -4.8 0.5 0 0 0</pose>
+        <collision name="c"><geometry><box><size>0.4 0.4 1.0</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>0.4 0.4 1.0</size></box></geometry>
+          <material><ambient>0.3 0.35 0.4 1</ambient><diffuse>0.4 0.45 0.5 1</diffuse></material></visual>
+      </link>
+
+    </model>
+
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>0 -18 16 0 0.75 1.5708</pose>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>
