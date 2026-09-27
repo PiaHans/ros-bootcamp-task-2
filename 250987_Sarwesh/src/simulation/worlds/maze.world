@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="maze_world">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <scene>
+      <shadows>false</shadows>
+    </scene>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>0.0 0.0 16.0 0 1.5707 1.5707</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+    <physics type="ode">
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+
+    <!-- Outer Boundary Walls (10m x 10m) -->
+    <model name="wall_north">
+      <static>1</static>
+      <pose>0 5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>10.2 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>10.2 0.2 1.0</size></box></geometry>
+          <material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_south">
+      <static>1</static>
+      <pose>0 -5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>10.2 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>10.2 0.2 1.0</size></box></geometry>
+          <material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_east">
+      <static>1</static>
+      <pose>5 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 10.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 10.2 1.0</size></box></geometry>
+          <material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_west">
+      <static>1</static>
+      <pose>-5 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 10.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 10.2 1.0</size></box></geometry>
+          <material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.7 0.7 0.7 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Interior Maze Dividers and Corridors -->
+    <model name="inner_wall_1">
+      <static>1</static>
+      <pose>-2.0 1.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>4.0 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>4.0 0.2 1.0</size></box></geometry>
+          <material><ambient>0.5 0.5 0.7 1</ambient><diffuse>0.6 0.6 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="inner_wall_2">
+      <static>1</static>
+      <pose>2.0 -1.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>4.0 0.2 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>4.0 0.2 1.0</size></box></geometry>
+          <material><ambient>0.5 0.5 0.7 1</ambient><diffuse>0.6 0.6 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="inner_wall_3">
+      <static>1</static>
+      <pose>1.5 2.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 3.5 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 3.5 1.0</size></box></geometry>
+          <material><ambient>0.5 0.5 0.7 1</ambient><diffuse>0.6 0.6 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="inner_wall_4">
+      <static>1</static>
+      <pose>-1.5 -2.5 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 3.5 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 3.5 1.0</size></box></geometry>
+          <material><ambient>0.5 0.5 0.7 1</ambient><diffuse>0.6 0.6 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="center_pillar">
+      <static>1</static>
+      <pose>0 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>1.0 1.0 1.0</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>1.0 1.0 1.0</size></box></geometry>
+          <material><ambient>0.7 0.5 0.5 1</ambient><diffuse>0.8 0.5 0.5 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
